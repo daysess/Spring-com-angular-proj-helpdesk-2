@@ -27,5 +27,11 @@ public class TecnicoService {
 		List<Tecnico> list = repository.findAll();
 		return list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
 	}
+
+	public Tecnico create(TecnicoDTO objDTO) {
+		objDTO.setId(null);
+		Tecnico obj = new Tecnico(objDTO);
+		return repository.save(obj);
+	}
 	
 }
