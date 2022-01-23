@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,14 @@ public class TecnicoService {
 		Tecnico obj = new Tecnico(objDTO);
 		return repository.save(obj);
 	}
+	
+	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		objDTO.setId(id);
+		Tecnico oldObj = findById(id);
+		validaPorCpfEemail(objDTO);
+		oldObj = new Tecnico(objDTO);
+		return repository.save(oldObj);
+	}
 
 	private void validaPorCpfEemail(TecnicoDTO objDTO) {
 		Optional<Pessoa> objPessoa = pessoaRepository.findByCpf(objDTO.getCpf());
@@ -52,5 +62,7 @@ public class TecnicoService {
 		}
 		
 	}
+
+	
 	
 }
