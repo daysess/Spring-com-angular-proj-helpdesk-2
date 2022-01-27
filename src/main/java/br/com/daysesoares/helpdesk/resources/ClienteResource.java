@@ -23,7 +23,7 @@ import br.com.daysesoares.helpdesk.service.ClienteService;
 
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClienteResouce {
+public class ClienteResource {
 	
 	@Autowired
 	private ClienteService service;

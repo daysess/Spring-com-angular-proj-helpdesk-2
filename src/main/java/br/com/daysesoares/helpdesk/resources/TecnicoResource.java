@@ -23,7 +23,7 @@ import br.com.daysesoares.helpdesk.service.TecnicoService;
 
 @RestController
 @RequestMapping(value = "/tecnicos")
-public class TecnicoResouce {
+public class TecnicoResource {
 	
 	@Autowired
 	private TecnicoService service;
