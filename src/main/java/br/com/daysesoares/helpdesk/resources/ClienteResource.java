@@ -42,8 +42,9 @@ public class ClienteResource {
 	
 	@PostMapping
 	public ResponseEntity<ClienteDTO>  create(@Valid @RequestBody ClienteDTO objDTO) {
-		Cliente tecnico = service.create(objDTO);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(tecnico.getId()).toUri();
+		Cliente cliente = service.create(objDTO);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(cliente.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	

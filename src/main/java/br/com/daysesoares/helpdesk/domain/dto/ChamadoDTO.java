@@ -2,6 +2,8 @@ package br.com.daysesoares.helpdesk.domain.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.daysesoares.helpdesk.domain.Chamado;
@@ -16,18 +18,24 @@ public class ChamadoDTO {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
 
+	@NotNull(message = "O campo PRIORIDADE é requerido")
 	private Integer idPrioridade;
 
+	@NotNull(message = "O campo STATUS é requerido")
 	private Integer idStatus;
 
+	@NotNull(message = "O campo TITULO é requerido")
 	private String titulo;
 
+	@NotNull(message = "O campo OBSERVAÇÕES é requerido")
 	private String observacoes;
 	
+	@NotNull(message = "O campo TECNICO é requerido")
 	private Integer idTecnico;
 	
 	private String nomeTecnico;
 	
+	@NotNull(message = "O campo CLIENTE é requerido")
 	private Integer idCliente;
 	
 	private String nomeCliente;
