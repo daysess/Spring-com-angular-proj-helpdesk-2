@@ -1,8 +1,11 @@
 package br.com.daysesoares.helpdesk.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +56,11 @@ public class ChamadoService {
 		if(objDTO.getId() != null) {
 			chamado.setId(objDTO.getId());
 		}
+		
+		if(Status.ENCERRADO.getCodigo() == objDTO.getIdStatus()) {
+			chamado.setDataFechamento(LocalDate.now());
+		}
+		
 		chamado.setTecnico(tecnico);
 		chamado.setCliente(cliente);
 		chamado.setPrioridade(Prioridade.toEnum(objDTO.getIdPrioridade()));
@@ -61,6 +69,14 @@ public class ChamadoService {
 		chamado.setObservacoes(objDTO.getObservacoes());
 		
 		return chamado;
+	}
+
+
+	public Chamado update(Integer id, ChamadoDTO objDTO) {
+		objDTO.setId(id);
+		Chamado oldObj = findById(id);
+		oldObj = newChamado(objDTO);
+		return chamadoRepository.save(oldObj);
 	}
 	
 }
